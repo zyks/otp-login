@@ -30,7 +30,7 @@ services:
       - "3000:3000"
     depends_on:
       - backend
-    volumes:
-      - ./frontend/:/code
+#    volumes:
+#      - ./frontend/:/code
     command: >
       sh -c "npm start"
