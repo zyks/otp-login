@@ -1,0 +1,36 @@
+---
+version: '3.7'
+
+services:
+  backend:
+    image: backend
+    build:
+      context: ./backend
+    env_file:
+      - .env
+    ports:
+      - '5000:5000'
+#    depends_on:
+#      - database
+    volumes:
+      - ./backend/:/code
+    command: >
+      sh -c "flask run --host=0.0.0.0"
+
+#  database:
+#    image: postgres:13-alpine
+#    env_file:
+#      - .env
+
+  frontend:
+    image: frontend
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend/:/code
+    command: >
+      sh -c "npm start"
