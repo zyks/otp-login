@@ -9,7 +9,7 @@ function LogoutPage() {
     useEffect(() => {
         service.logout()
         history.push("/login/")
-    })
+    }, [])
 
     return (
         <div>Logging out...</div>
